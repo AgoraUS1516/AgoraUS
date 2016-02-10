@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+
+<html>
+<meta charset="UTF8">
+<head>
+<style type="styles/bootstrap.css"></style>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="styles/font-awesome.css">
+<script src="scripts/principal.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-5"></div>
+			<div class="col-xs-2">
+				<img src="images/logo.png" height="80%" width="80%"/>
+			</div>
+			<div class="col-xs-5"></div>
+			<br>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="btn-group btn-group-lg">
+					<a type="button" class="btn btn-primary" href="#">Informaci&oacute;n</a>
+				 	<a type="button" class="btn btn-primary" href="#create">Crear Votaci&oacute;n</a>
+					<a type="button" class="btn btn-primary" href="#list">Listar</a>
+				</div>
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10">
+				<h3>Crear votaci&oacute;n</h3>
+			</div>
+			<div class="col-xs-1"></div>
+			<br>
+		</div>
+		
+				<br>
+		<div id="cuerpo" class="row">
+			<div class="col-xs-1"></div>
+			<div  class="col-xs-10">
+				<form role="form" name="form" ng-controller="createController" novalidate>
+					<div class="form-group">
+						<label>Título:</label>
+						<input class="form-control" name="sTitle" type="text" ng-model="survey.title" name="title" ng-minlength="5" ng-maxlength="100" required>
+						<span ng-show="form.sTitle.$error.minlength || form.sTitle.$error.maxlength" style="color:red;font-style: oblique;">El título debe tener entre 5 y 100 caracteres.</span>
+					</div>
+					<div class="form-group">
+						<label>Descripción:</label>
+						<textarea class="form-control" name="sDescription" ng-model="survey.description" ng-minlength="5" ng-maxlength="150" required></textarea>
+						<span ng-show="form.sDescription.$error.required && form.sDescription.$dirty" style="color:red;font-style: oblique;">Campo requerido</span><br>
+						<span ng-show="form.sDescription.$error.minlength || form.sDescription.$error.maxlength" style="color:red;font-style: oblique;">Entre 5 y 150 caracteres</span>
+					</div>
+					<div class="form-group">	
+							<label>Fecha Inicio:</label>
+							<input class="form-control" type="date" ng-model="survey.startDate" placeholder="yyyy-MM-dd" required/>
+						</div>
+					<div class="form-group">	
+						<label>Fecha de finalizaci&oacute;n:</label>
+						<select onchange="actualiza_opcionFecha(this)">
+						  <option value="no">No</option>
+						  <option value="si">Si</option>
+						</select>
+					</div>
+					
+					<div id="fechaFin" class="form-group hidden">	
+						<label>Fecha Fin:</label>
+						<input class="form-control" type="date" ng-model="survey.endDate" placeholder="yyyy-MM-dd"/>
+					</div>
+					<div class="form-group">
+						<label>Categoría:</label>
+						<select class="form-control" ng-model="survey.category" required>
+							<option value="deportes">Deportes</option>
+							<option value="musica">Música</option>
+							<option value="cine">Cine</option>
+							<option value="politica">Política</option>
+							<option value="otros">Otros</option>
+						</select>
+					</div>
+					<div class="form-group">	
+						<label>Incluir imagen:</label>
+						<select onchange="actualizar_opciones(this)">
+						  <option value="No">No</option>
+						  <option value="Si">Si</option>
+						</select>
+					</div>
+					<div id="divImagenes" class="hidden">
+						
+						<label>Imagen:&nbsp;</label>
+						<div class="row">
+							<div><input type="file"/></div>
+						</div>
+						<br/>
+						<label>Nombre:&nbsp;</label>
+						<div class="row">
+							<input class="form-control" type="text"/>
+						</div>
+						<br/>
+					</div>
+					<div id="divTexto">
+						<div class="form-group">	
+							<label>N&uacute;mero de votaciones:&nbsp;&nbsp;</label>
+							<label><input type="radio" name="votaciones" checked="">Permitir votar a una sola opci&oacute;n&nbsp;&nbsp;&nbsp;</label>
+							<label><input type="radio" name="votaciones">Permitir votar a más de una opci&oacute;n</label>
+						</div>
+						<div id="preguntas">
+							<div ng-repeat="q in qs track by $index">
+								<label>Pregunta {{$index+1}}</label>
+								<input type="hidden" value='{{survey.questions[$index].type="question"}}' required>
+								<input name="survey" type="text" ng-model="survey.questions[$index].text" required/>
+								<button ng-click="deleteQuestionField()"><i class="fa fa-remove"></i></button>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<div class="col-xs-4"></div>
+							<div class="col-xs-3">
+								<button class="btn btn-primary" type="button" ng-click="addQuestionField()">A&ntilde;adir Pregunta</button>
+							</div>
+							<div class="col-xs-1">
+								<button class="btn btn-primary" type="button" ng-click="submit(survey)" ng-disabled="form.$invalid">Enviar</button>
+							</div>
+							<div class="col-xs-4"></div>
+						</div>
+						<br/>
+					</div>
+					
+				</form>
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+		<br>
+	</div>
+</body>
+</html>

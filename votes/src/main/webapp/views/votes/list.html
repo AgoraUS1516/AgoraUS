@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+<meta charset="UTF8">
+<head>
+<style type="styles/bootstrap.css"></style>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="styles/font-awesome.css">
+<script type="text/javascript" src="scripts/bootstrap.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-5"></div>
+			<div class="col-xs-2">
+			<img src="images/logo.png" height="80%" width="80%"/>
+			</div>
+			<div class="col-xs-5"></div>
+			<br>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="btn-group btn-group-lg">
+					<a type="button" class="btn btn-primary" href="#">Informaci&oacute;n</a>
+				 	<a type="button" class="btn btn-primary" href="#create">Crear Votaci&oacute;n</a>
+					<a type="button" class="btn btn-primary" href="#list">Listar</a>
+				</div>
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10">
+				<h3>Lista de votaciones</h3>
+			</div>
+			<div class="col-xs-1"></div>
+			<br>
+		</div>
+		
+				<br>
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10">
+				<div ng-controller="listController">
+					<div class="btn-group btn-group">
+						<a type="button" class="btn btn-primary" ng-click="borrar(survey)" href="#">Borrar</a>
+					 	<a type="button" class="btn btn-primary" ng-click="goEditCensus(survey)" href="#">Editar Censo</a>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+		<br>
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+
+	<!-- Other domain beans come here -->
+	<!-- Survey -->
+	<bean id="survey1" class="domain.Survey">
+		<property name="title" value="Survey1" />
+		<property name="description" value="Esta es la Survey1" />
+		<property name="category" value="Deportes" />
+		<property name="startDate" value="01/01/2017" />
+		<property name="endDate" value="10/10/2017" />
+		<property name="census" value="1" />
+		<property name="questions">
+			<list>
+				<ref bean="question1" />
+				<ref bean="question2" />
+			</list>
+		</property>
+		</bean>
+		<!-- Question -->
+		<bean id="question1" class="domain.Question">
+			<property name="text" value="Pregunta 1" />
+		</bean>
+		<bean id="question2" class="domain.Question">
+			<property name="text" value="Pregunta 2" />
+		</bean>
+		<bean id="question3" class="domain.Question">
+			<property name="text" value="Pregunta 3" />
+		</bean>
+		<bean id="question4" class="domain.Question">
+			<property name="text" value="Pregunta 4" />
+		</bean>
+</beans>

@@ -1,0 +1,10 @@
+drop database if exists `CreacionAdminVotaciones`;
+create database `CreacionAdminVotaciones`;
+
+grant select, insert, update, delete
+on `CreacionAdminVotaciones`.* to 'acme-user'@'%';
+
+grant select, insert, update, delete, create, drop, references, index, alter,
+create temporary tables, lock tables, create view, create routine,
+alter routine, execute, trigger, show view
+on `CreacionAdminVotaciones`.* to 'acme-manager'@'%';
